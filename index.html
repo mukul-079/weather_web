@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Rubik|Nunito&display=swap');
+        
+
+ body{
+    font-family:"Rubik",monospace;
+ }
+
+.container{
+    height: 110vh;
+        display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-left: 25px;
+            padding-right: 25px;
+            margin-left: auto;
+            margin-right: auto;
+}
+
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    background-color: #353b48;
+    border-radius: 30px;
+    padding: 10px;
+    }
+
+    .search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 450px;
+    caret-color:red;
+    transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon{
+    background: white;
+    color: #e74c3c;
+    }
+
+    .search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    text-decoration:none;
+    }
+div .output{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly ;
+    align-items: center;
+}
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_3.gif) center no-repeat white;
+}
+
+
+
+ h2{
+    text-align: center ;
+    padding-top: 15px;
+}
+ footer{
+     padding:7% 15%;
+     text-align:center;
+}
+.social-icon{
+    margin :20px 10px;
+    color:yellow;
+}
+.jumbotron{
+    min-height: 50%;
+    min-width: 50%;
+    background:linear-gradient(to right,rgb(56, 33, 185) , violet 100%)
+    
+}
+
+
+
+            </style>
+            <title>Weather web</title>
+            <link rel="shortcut icon" href="favicon.png">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+            <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        </head>
+<body style="background:linear-gradient(to right, black, cyan  200%);">
+    <div class="se-pre-con"></div>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+			<div class="col-12">
+        <div class="jumbotron">
+            <h1 style="text-shadow: 2px 2px whitesmoke;">
+               <i class="fas fa-cloud-sun-rain"></i> 
+                Weather Web
+            </h1><br><br>
+            <div class="inputs">
+                <div class="container h-100">
+                    <div class="d-flex justify-content-center h-100">
+                      <div class="searchbar">
+                        <input class="search_input" type="text" name="" placeholder="Search the place" id="name">
+                        <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <br><br>
+                  <center>
+                <button class="btn btn-warning active p-2.5" type="button"id="get" onclick="showI();">GO</button></center>
+                </div>
+                <br>
+                <div class="output">
+                    <h1><i id="loading" class="fa fa-globe" aria-hidden="true" style="visibility: hidden; " ></i></h1>
+                    <h2 id="place"></h2>
+                    <h1 id="temp" style="text-shadow: 2px 2px whitesmoke;"></h1>
+                    <h3 id="cond"></h3>
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <footer id="footer" style="color:white;">
+        <a href="https://www.facebook.com/mukul.varshney.3597"><i class="social-icon fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/mukul_079">  <i class="social-icon fab fa-instagram"></i></a>
+        <i class="social-icon fab fa-twitter"></i>
+        <a href="https://github.com/mukul-079"><i class="social-icon fab fa-github"></i></a>
+
+        <h5><b><i>Made with >>Mukul Varshney</i></b></h5>
+
+      </footer>
+    <script>
+
+        function showI(){
+            document.getElementById('loading').style.visibility="visible";
+        }
+        $(document).ready(function(){
+  var name =   $("#name").val();
+  
+  $("#get").click(function(){
+  var name =   $("#name").val();
+      var a =  
+`https://api.openweathermap.org/data/2.5/weather?q=${name}&units=metric&appid=63529bf0a170298867d2689b88b1f37c` ;
+      
+       $.getJSON(a,function(data){
+           
+            $("#place").text(data.name);
+            $("#temp").css({"display":"block"})
+            $("#temp").text(data.main.temp+"°C");
+            $("#cond").text(data.weather[0].description);
+
+            })
+});
+});
+</script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+           <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+         <script>
+
+            $(window).load(function() {
+              $(".se-pre-con").fadeOut("slow");;
+            });
+    </script>
+</body>
